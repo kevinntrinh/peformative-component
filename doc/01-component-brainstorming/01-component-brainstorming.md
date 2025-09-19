@@ -116,8 +116,6 @@ you're just brainstorming right now. You do not have to commit to anything.
 
 ### Example Component
 
-<!-- TODO: review this example component then delete this comment -->
-
 To help you brainstorm a few components, we've provided an example below of a
 component you already know well: NaturalNumber. We highly recommend that you
 mirror the formatting as close as possible in your designs. By following this
@@ -184,68 +182,81 @@ will likely refine your design to make your implementation easier to use.
 
 > Please use this section to share your designs.
 
-- Component Design #1: <!-- TODO: give component a name then delete this comment -->
+- Component Design #1: TuneSort
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - The purpose of this component is to act as a playlist system for music. The songs can be added, removed, sorted, and managed. The kernel will take care of the most basic adding, removing, and playing songs in order. The secondary methods will take care of things such as shuffle, more advanced sorting or moving of songs, and size.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - void addSong(Song s): adds s to the playlist
+    - Song removeSong(): removes and returns the song from the playlist
+    - Song currentSong(): reports the current song
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - void skipTo(int index): skips to the song at the index
+    - void shuffle(): randomly moves around the songs in the playlist
+    - int size(): reports the size of the playlist
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - This component is mutable because it is constantly being added to, removed from, and other things.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - It may rely on like a queue or a new Song class which has the title of the song, the artist, and maybe other things.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Maybe for the way the playlist will work like if it will be shuffled, normal, or repeated.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes I can implement the secondary methods because the kernel methods are the base of a playlist. So something like shuffle can be created using a random remove and add code snippet.
 
-- Component Design #2: <!-- TODO: give component a name then delete this comment -->
+- Component Design #2: AniLibrary
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - The purpose of this component is to serve as a way to hold a personal anime library. Different series can be added, removed, and searched within the library. The kernel will hold the storage and the looking up of series while the secondary methods will be more advanced sorting options.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - void addSeries(Series s): adds a new anime series to the library
+    - Series removeSeries(String title): removes and returns a series from its title
+    - boolean contains(String title): reports whether a series is in the library or not
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - int size(): returns how many series are in the library
+    - void markAsCompleted(String title): marks a series as completed
+    - Series recommendRandom(): gives a random series from the library to recommend
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes because the library will be constantly changed by being added to or removed from.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Maybe a Map.Pair for series and status or a new series class that has more complex tags like title, genre, rating.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Maybe like the status for the user like if its ongoing for them, completed, or even dropped.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes I can because the kernel methods are the most basic with a secondary method like recommendRandom using remove and add to get a random one and add it back.
 
-- Component Design #3: <!-- TODO: give component a name then delete this comment -->
+- Component Design #3: EatsLog
   - **Description**:
-    - <!-- TODO: describe your component then delete this comment -->
+    - The purpose of this component is to track the restaurants and meals that the user has had. Different ratings and categories can also be added to the meal and restaurants. The kernel will add and remove the entries while the secondary methods will handle filtering.
   - **Kernel Methods**:
-    - <!-- TODO: list kernel methods then delete this comment -->
+    - void addMeal(Meal m): adds a new meal entry
+    - void addRating(int rating, Meal m): adds a rating to a meal
+    - void addRestaurant(String restaurant): adds restaurant to the library
+    - Meal getMeal(String name): reports the meal by its name
+    - boolean hasVisited(String restaurant): reports if the restaurant has been eaten at or not
   - **Secondary Methods**:
-    - <!-- TODO: list secondary methods then delete this comment -->
+    - int size(): reports how many meals have been logged
+    - double averageRating(): gets the average rating across meals
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes because meals and restaurants will be added.
     - Would this component rely on any internal classes (e.g., `Map.Pair`)?
       Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Maybe a Map.Pair for restaurant and meal or a new Meal class for greater tags like the cuisine, rating, and date.
     - Would this component need any enums or constants (e.g.,
       `Program.Instruction`)? Answer and explain:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Most likely for different cuisines.
     - Can you implement your secondary methods using your kernel methods?
       Answer, explain, and give at least one example:
-      - <!-- TODO: provide an argument then delete this comment -->
+      - Yes because the kernel methods are simple add and remove methods that can used to get the average rating by getting all of the ratings and then getting an average.
 
 ## Post-Assignment
 
@@ -253,8 +264,6 @@ The following sections detail everything that you should do once you've
 completed the assignment.
 
 ### Changelog
-
-<!-- TODO: create CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -272,13 +281,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Calendar Versioning](https://calver.org/) of
 the following form: YYYY.0M.0D.
 
-## YYYY.MM.DD
+## 2025.09.19
 
 ### Added
 
-- Designed a <!-- insert name of component 1 here --> component
-- Designed a <!-- insert name of component 2 here --> component
-- Designed a <!-- insert name of component 3 here --> component
+- Designed a TuneSort component
+- Designed a AniLibrary component
+- Designed a EatsLog component
 ```
 
 Here `YYYY.MM.DD` would be the date of your submission, such as 2024.04.21.
@@ -293,8 +302,6 @@ of development.
 
 ### Submission
 
-<!-- TODO: read the submission instructions then delete this comment -->
-
 If you have completed the assignment using this template, we recommend that
 you convert it to a PDF before submission. If you're not sure how, check out
 this [Markdown to PDF guide][markdown-to-pdf-guide]. However, PDFs should be
@@ -303,11 +310,7 @@ all your work is there before submitting. For future assignments, you will
 just be submitting a link to a pull request. This will be the only time
 you have to submit any PDFs.
 
-<!-- TODO: upload a PDF of this document and the CHANGELOG to Carmen then delete this comment -->
-
 ### Peer Review
-
-<!-- TODO: review the peer review guidelines then delete this comment -->
 
 Following the completion of this assignment, you will be assigned three
 students' component brainstorming assignments for review. Your job during the
