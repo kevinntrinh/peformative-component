@@ -1,5 +1,11 @@
 # Changelog
 
+## 2025.10.28
+
+### Changed
+
+- Resubmission of 01-component-brainstorming by tweaking layering and reworking food component.
+
 ## 2025.10.23
 
 ### Added

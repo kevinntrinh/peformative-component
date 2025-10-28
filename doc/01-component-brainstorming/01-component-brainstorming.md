@@ -189,10 +189,10 @@ will likely refine your design to make your implementation easier to use.
     - void addSong(Song s): adds s to the playlist
     - Song removeSong(): removes and returns the song from the playlist
     - Song currentSong(): reports the current song
+    - int size(): reports the size of the playlist
   - **Secondary Methods**:
     - void skipTo(int index): skips to the song at the index
     - void shuffle(): randomly moves around the songs in the playlist
-    - int size(): reports the size of the playlist
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
@@ -214,8 +214,8 @@ will likely refine your design to make your implementation easier to use.
     - void addSeries(Series s): adds a new anime series to the library
     - Series removeSeries(String title): removes and returns a series from its title
     - boolean contains(String title): reports whether a series is in the library or not
-  - **Secondary Methods**:
     - int size(): returns how many series are in the library
+  - **Secondary Methods**:
     - void markAsCompleted(String title): marks a series as completed
     - Series recommendRandom(): gives a random series from the library to recommend
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
@@ -236,14 +236,15 @@ will likely refine your design to make your implementation easier to use.
   - **Description**:
     - The purpose of this component is to track the restaurants and meals that the user has had. Different ratings and categories can also be added to the meal and restaurants. The kernel will add and remove the entries while the secondary methods will handle filtering.
   - **Kernel Methods**:
-    - void addMeal(Meal m): adds a new meal entry
-    - void addRating(int rating, Meal m): adds a rating to a meal
-    - void addRestaurant(String restaurant): adds restaurant to the library
-    - Meal getMeal(String name): reports the meal by its name
-    - boolean hasVisited(String restaurant): reports if the restaurant has been eaten at or not
-  - **Secondary Methods**:
+    - void logMeal(String restaurant, Meal meal) — logs a meal and the restaurant its from
+    - Meal removeMeal(String name): removes and returns a meal from the log by its name and reports which restaurant it was from.
+    - boolean hasVisited(String restaurant): reports whether the restaurant has been logged before
+    - boolean hasEaten(String food): reports whether a food has been eaten before and which restaurant it was from
+    - Meal getMeal(String name) — retrieves a meal by its name.
     - int size(): reports how many meals have been logged
-    - double averageRating(): gets the average rating across meals
+  - **Secondary Methods**:
+    - Meal recommendRandom(): returns a random meal from the log to recommend.
+    - void displayAll(): displays all restaurants and their foods.
   - **Additional Considerations** (*note*: "I don't know" is an acceptable
     answer for each of the following questions):
     - Would this component be mutable? Answer and explain:
