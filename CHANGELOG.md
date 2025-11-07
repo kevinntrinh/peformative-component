@@ -5,10 +5,12 @@
 ### Added
 
 - removeAny method to kernel so that secondary methods can be implemented
+- abstract-class secondary methods
 
 ### Removed
 
 - clear() in interfaces AniLibrary file since it is included in Standard
+- TODOs in assignment 4
 
 ## 2025.10.28
 
