@@ -30,6 +30,17 @@ import components.standard.Standard;
  * </pre>
  */
 public interface AniLibraryKernel extends Standard<AniLibrary> {
+    /**
+     * Removes and returns an arbitrary (title, genre) pair from this.
+     *
+     * @return a two-element array {@code [title, genre]} removed from this
+     * @updates this
+     * @requires size() > 0
+     * @ensures let removed = return value removed.length = 2 and (removed[0],
+     *          removed[1]) was in #this and this = #this minus {(removed[0],
+     *          removed[1])}
+     */
+    String[] removeAny();
 
     /**
      * Adds a new anime title and its genre to this library.
