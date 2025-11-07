@@ -1,6 +1,6 @@
 /**
- * Secondary interface for {@code AniLibraryKernel}.
- * Adds convenience and relational methods for managing anime entries.
+ * Secondary interface for {@code AniLibraryKernel}. Adds convenience and
+ * relational methods for managing anime entries.
  *
  * @mathsubtypes <pre>
  * ANILIBRARY_MODEL as defined in {@code AniLibraryKernel}
@@ -16,10 +16,9 @@ public interface AniLibrary extends AniLibraryKernel {
      * @param newGenre
      *            the new genre for the anime
      * @updates this
-     * @requires
-     *  title is in the domain of this
-     * @ensures
-     *  this = (#this minus {(title, oldGenre)}) union {(title, newGenre)}
+     * @requires title is in the domain of this
+     * @ensures this = (#this minus {(title, oldGenre)}) union {(title,
+     *          newGenre)}
      */
     void updateGenre(String title, String newGenre);
 
@@ -28,8 +27,8 @@ public interface AniLibrary extends AniLibraryKernel {
      *
      * @param genre
      *            the genre to count
-     * @ensures
-     *  countByGenre = the number of pairs (t, g) in this such that g = genre
+     * @ensures countByGenre = the number of pairs (t, g) in this such that g =
+     *          genre
      * @return the number of anime in the given genre
      */
     int countByGenre(String genre);
@@ -41,10 +40,8 @@ public interface AniLibrary extends AniLibraryKernel {
      *            the {@code AniLibrary} to be combined with this
      * @updates this
      * @clears other
-     * @requires
-     *  the domain of this and the domain of other are disjoint
-     * @ensures
-     *  this = #this union #other
+     * @requires the domain of this and the domain of other are disjoint
+     * @ensures this = #this union #other
      */
     void mergeWith(AniLibrary other);
 
@@ -53,8 +50,8 @@ public interface AniLibrary extends AniLibraryKernel {
      *
      * @param other
      *            the {@code AniLibrary} to compare with this
-     * @ensures
-     *  sharesTitleWith = (the domain of this) intersection (the domain of other) is not empty
+     * @ensures sharesTitleWith = (the domain of this) intersection (the domain
+     *          of other) is not empty
      * @return true if any title exists in both libraries
      */
     boolean sharesTitleWith(AniLibrary other);
@@ -64,28 +61,14 @@ public interface AniLibrary extends AniLibraryKernel {
      *
      * @param genre
      *            the genre to filter by
-     * @ensures
-     *  this = #this and
-     *  every pair (t, g) displayed satisfies g = genre
+     * @ensures this = #this and every pair (t, g) displayed satisfies g = genre
      */
     void displayByGenre(String genre);
 
     /**
      * Displays all titles and genres in this library.
      *
-     * @ensures
-     *  this = #this and
-     *  every pair (t, g) in this is displayed
+     * @ensures this = #this and every pair (t, g) in this is displayed
      */
     void displayAll();
-
-    /**
-     * Removes all entries from this library.
-     *
-     * @clears this
-     * @ensures
-     *  this = {}
-     */
-    @Override
-    void clear();
 }
