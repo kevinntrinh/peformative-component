@@ -1,5 +1,13 @@
 # Changelog
 
+## 2025.11.06
+
+### Added
+
+### Removed
+
+- clear() in interfaces AniLibrary file since it is included in Standard
+
 ## 2025.10.28
 
 ### Changed
