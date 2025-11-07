@@ -25,7 +25,6 @@ public abstract class AniLibrarySecondary implements AniLibrary {
             sb.append("(").append(e[0]).append(", ").append(e[1]).append(")");
             hold.addSeries(e[0], e[1]);
         }
-        // restore
         while (hold.size() > 0) {
             String[] e = hold.removeAny();
             this.addSeries(e[0], e[1]);
@@ -36,39 +35,38 @@ public abstract class AniLibrarySecondary implements AniLibrary {
 
     @Override
     public boolean equals(Object o) {
-        if (o == this) {
-            return true;
-        }
-        if (!(o instanceof AniLibrary)) {
-            return false;
-        }
-        AniLibrary other = (AniLibrary) o;
+        boolean result = true;
+        if (o == null || o.getClass() != this.getClass()) {
+            result = false;
+        } else {
+            AniLibrary other = (AniLibrary) o;
 
-        if (this.size() != other.size()) {
-            return false;
-        }
-
-        boolean equal = true;
-        AniLibrary hold = this.newInstance();
-
-        while (equal && this.size() > 0) {
-            String[] e = this.removeAny();
-            hold.addSeries(e[0], e[1]);
-
-            if (!other.hasSeries(e[0])) {
-                equal = false;
+            if (o == this) {
+                result = true;
+            } else if (this.size() != other.size()) {
+                result = false;
             } else {
-                String g2 = other.genreOf(e[0]);
-                if (!e[1].equals(g2)) {
-                    equal = false;
+                AniLibrary hold = this.newInstance();
+                while (result && this.size() > 0) {
+                    String[] e = this.removeAny();
+                    hold.addSeries(e[0], e[1]);
+
+                    if (!other.hasSeries(e[0])) {
+                        result = false;
+                    } else {
+                        String g2 = other.genreOf(e[0]);
+                        if (!e[1].equals(g2)) {
+                            result = false;
+                        }
+                    }
+                }
+                while (hold.size() > 0) {
+                    String[] e = hold.removeAny();
+                    this.addSeries(e[0], e[1]);
                 }
             }
         }
-        while (hold.size() > 0) {
-            String[] e = hold.removeAny();
-            this.addSeries(e[0], e[1]);
-        }
-        return equal;
+        return result;
     }
 
     @Override
