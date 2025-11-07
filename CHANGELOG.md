@@ -4,6 +4,8 @@
 
 ### Added
 
+- removeAny method to kernel so that secondary methods can be implemented
+
 ### Removed
 
 - clear() in interfaces AniLibrary file since it is included in Standard
