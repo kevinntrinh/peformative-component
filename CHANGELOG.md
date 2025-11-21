@@ -1,5 +1,15 @@
 # Changelog
 
+## 2025.11.21
+
+### Added
+
+- Designed kernel implementation for AniLibrary
+
+### Removed
+
+- TODOs in assignment 5
+
 ## 2025.11.07
 
 ### Added
