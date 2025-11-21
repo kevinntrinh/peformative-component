@@ -2,7 +2,7 @@ import components.map.Map;
 import components.map.Map1L;
 
 /**
- * {@code AniLibrary} kernel implemented on an OSU {@link Map1L} from title to genre.
+ * AniLibrary kernel implemented on an OSU Map1L from title to genre.
  *
  * @convention <pre>
  *  this.rep != null  and
@@ -18,7 +18,7 @@ public class AniLibrary1L extends AniLibrarySecondary {
      */
 
     /**
-     * Representation of {@code this} as a map title -> genre.
+     * Representation of this as a map title -> genre.
      */
     private Map<String, String> rep;
 
