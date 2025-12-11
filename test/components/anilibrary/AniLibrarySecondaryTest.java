@@ -12,7 +12,6 @@ import org.junit.Test;
  * JUnit test fixture for {@code AniLibrary}'s secondary methods.
  *
  * @author Kevin Trinh
- *
  */
 public abstract class AniLibrarySecondaryTest {
 
@@ -80,6 +79,9 @@ public abstract class AniLibrarySecondaryTest {
         assertEquals(expected, this.snapshot(actual));
     }
 
+    /**
+     * Testing: updateGenre replaces the genre only for the specified title.
+     */
     @Test
     public void testUpdateGenre() {
         AniLibrary lib = this.build("AOT", "Action", "Haikyuu", "Sports");
@@ -90,6 +92,10 @@ public abstract class AniLibrarySecondaryTest {
         this.assertEqualsMap(exp, lib);
     }
 
+    /**
+     * Testing: countByGenre returns the correct counts for existing and missing
+     * genres.
+     */
     @Test
     public void testCountByGenre() {
         AniLibrary lib = this.build("A", "X", "B", "Y", "C", "X");
@@ -98,6 +104,9 @@ public abstract class AniLibrarySecondaryTest {
         assertEquals(0, lib.countByGenre("Z"));
     }
 
+    /**
+     * Testing: mergeWith moves all pairs from other into this and clears other.
+     */
     @Test
     public void testMergeWith() {
         AniLibrary a = this.build("A", "X");
@@ -107,13 +116,116 @@ public abstract class AniLibrarySecondaryTest {
         exp.put("A", "X");
         exp.put("B", "Y");
         this.assertEqualsMap(exp, a);
-        assertEquals(0, b.size()); // cleared
+        assertEquals(0, b.size());
     }
 
+    /**
+     * Testing: sharesTitleWith returns true when libraries share at least one
+     * title.
+     */
     @Test
     public void testSharesTitleWith() {
         AniLibrary a = this.build("A", "X", "B", "Y");
         AniLibrary b = this.build("C", "Z", "B", "Q");
         assertTrue(a.sharesTitleWith(b));
+    }
+
+    /**
+     * Testing: displayByGenre prints only titles with the requested genre and
+     * is non-destructive.
+     */
+    @Test
+    public void testDisplayByGenreOutputsOnlyRequestedGenre() {
+        AniLibrary lib = this.build("AOT", "Action", "Haikyuu", "Sports", "OPM",
+                "Action");
+        java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+        java.io.PrintStream oldOut = System.out;
+        System.setOut(new java.io.PrintStream(baos));
+        try {
+            lib.displayByGenre("Action");
+        } finally {
+            System.setOut(oldOut);
+        }
+        String out = baos.toString();
+        assertTrue(out.contains("AOT") && out.contains("Action"));
+        assertTrue(out.contains("OPM") && out.contains("Action"));
+        assertTrue(!out.contains("Haikyuu"));
+        java.util.Map<String, String> exp = new java.util.HashMap<>();
+        exp.put("AOT", "Action");
+        exp.put("Haikyuu", "Sports");
+        exp.put("OPM", "Action");
+        this.assertEqualsMap(exp, lib);
+    }
+
+    /**
+     * Testing: displayAll prints every (title, genre) pair and is
+     * non-destructive.
+     */
+    @Test
+    public void testDisplayAllPrintsEverything() {
+        AniLibrary lib = this.build("A", "X", "B", "Y");
+        java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+        java.io.PrintStream oldOut = System.out;
+        System.setOut(new java.io.PrintStream(baos));
+        try {
+            lib.displayAll();
+        } finally {
+            System.setOut(oldOut);
+        }
+        String out = baos.toString();
+        assertTrue(out.contains("A") && out.contains("X"));
+        assertTrue(out.contains("B") && out.contains("Y"));
+        java.util.Map<String, String> exp = new java.util.HashMap<>();
+        exp.put("A", "X");
+        exp.put("B", "Y");
+        this.assertEqualsMap(exp, lib);
+    }
+
+    /**
+     * Testing: equals returns true for two libraries with identical contents
+     * (order-insensitive).
+     */
+    @Test
+    public void testEqualsTrueSameContentDifferentOrder() {
+        AniLibrary a = this.build("A", "X", "B", "Y", "C", "Z");
+        AniLibrary b = this.build("C", "Z", "B", "Y", "A", "X");
+        assertTrue(a.equals(b));
+    }
+
+    /**
+     * Testing: equals returns false when contents differ.
+     */
+    @Test
+    public void testEqualsFalseDifferentContent() {
+        AniLibrary a = this.build("A", "X", "B", "Y");
+        AniLibrary b = this.build("A", "X", "B", "Q");
+        assertTrue(!a.equals(b));
+    }
+
+    /**
+     * Testing: hashCode is consistent with equals.
+     */
+    @Test
+    public void testHashCodeConsistentWithEquals() {
+        AniLibrary a = this.build("A", "X", "B", "Y");
+        AniLibrary b = this.build("B", "Y", "A", "X");
+        assertTrue(a.equals(b));
+        assertEquals(a.hashCode(), b.hashCode());
+    }
+
+    /**
+     * Testing: toString prints all (title, genre) pairs in braces and is
+     * non-destructive.
+     */
+    @Test
+    public void testToStringFormatAndNonDestructive() {
+        AniLibrary lib = this.build("A", "X", "B", "Y");
+        String s = lib.toString();
+        assertTrue(s.startsWith("{") && s.endsWith("}"));
+        assertTrue(s.contains("(A, X)") && s.contains("(B, Y)"));
+        java.util.Map<String, String> exp = new java.util.HashMap<>();
+        exp.put("A", "X");
+        exp.put("B", "Y");
+        this.assertEqualsMap(exp, lib);
     }
 }

@@ -13,7 +13,6 @@ import org.junit.Test;
  * JUnit test fixture for {@code AniLibrary}'s kernel methods.
  *
  * @author Kevin Trinh
- *
  */
 public abstract class AniLibraryKernelTest {
 
@@ -81,15 +80,28 @@ public abstract class AniLibraryKernelTest {
         assertEquals(expected, this.snapshot(actual));
     }
 
-    // ---- constructor / size ----
+    /**
+     * Testing: constructor creates a library with no entries (empty snapshot).
+     */
     @Test
-    public void testConstructorEmpty() {
+    public void testConstructorCreatesEmptyLibrary() {
         AniLibrary lib = this.constructorTest();
-        assertEquals(0, lib.size());
         assertTrue(this.snapshot(lib).isEmpty());
     }
 
-    // ---- addSeries ----
+    /**
+     * Testing: size() returns 0 on a newly constructed library.
+     */
+    @Test
+    public void testSizeZeroOnNewLibrary() {
+        AniLibrary lib = this.constructorTest();
+        assertEquals(0, lib.size());
+    }
+
+    /**
+     * Testing: addSeries to empty adds the (title, genre) pair and size becomes
+     * 1.
+     */
     @Test
     public void testAddSeriesToEmpty() {
         AniLibrary lib = this.constructorTest();
@@ -100,6 +112,10 @@ public abstract class AniLibraryKernelTest {
         this.assertEqualsMap(exp, lib);
     }
 
+    /**
+     * Testing: addSeries to non-empty adds the new pair and preserves existing
+     * entries.
+     */
     @Test
     public void testAddSeriesToNonEmpty() {
         AniLibrary lib = this.build("AOT", "Action");
@@ -111,20 +127,40 @@ public abstract class AniLibraryKernelTest {
         this.assertEqualsMap(exp, lib);
     }
 
-    // ---- hasSeries / genreOf ----
+    /**
+     * Testing: hasSeries returns true when the given title exists; state
+     * unchanged.
+     */
     @Test
-    public void testHasSeriesTrueAndGenreOf() {
+    public void testHasSeriesTrue() {
         AniLibrary lib = this.build("AOT", "Action", "Your Lie in April",
                 "Romance");
         assertTrue(lib.hasSeries("AOT"));
-        assertEquals("Action", lib.genreOf("AOT"));
-        // state unchanged
         Map<String, String> exp = new HashMap<>();
         exp.put("AOT", "Action");
         exp.put("Your Lie in April", "Romance");
         this.assertEqualsMap(exp, lib);
     }
 
+    /**
+     * Testing: genreOf returns the correct genre for an existing title; state
+     * unchanged.
+     */
+    @Test
+    public void testGenreOfExistingTitle() {
+        AniLibrary lib = this.build("AOT", "Action", "Your Lie in April",
+                "Romance");
+        assertEquals("Action", lib.genreOf("AOT"));
+        Map<String, String> exp = new HashMap<>();
+        exp.put("AOT", "Action");
+        exp.put("Your Lie in April", "Romance");
+        this.assertEqualsMap(exp, lib);
+    }
+
+    /**
+     * Testing: hasSeries returns false for a title not in the library; state
+     * unchanged.
+     */
     @Test
     public void testHasSeriesFalse() {
         AniLibrary lib = this.build("AOT", "Action");
@@ -134,7 +170,10 @@ public abstract class AniLibraryKernelTest {
         this.assertEqualsMap(exp, lib);
     }
 
-    // ---- removeSeries ----
+    /**
+     * Testing: removeSeries removes the only entry and returns its genre,
+     * leaving the library empty.
+     */
     @Test
     public void testRemoveSeriesOne() {
         AniLibrary lib = this.build("AOT", "Action");
@@ -144,6 +183,10 @@ public abstract class AniLibraryKernelTest {
         assertTrue(this.snapshot(lib).isEmpty());
     }
 
+    /**
+     * Testing: removeSeries removes one entry from multiple and returns the
+     * removed genre.
+     */
     @Test
     public void testRemoveSeriesFromMany() {
         AniLibrary lib = this.build("AOT", "Action", "Haikyuu", "Sports",
@@ -156,7 +199,10 @@ public abstract class AniLibraryKernelTest {
         this.assertEqualsMap(exp, lib);
     }
 
-    // ---- removeAny ----
+    /**
+     * Testing: removeAny on a single-entry library removes that pair and leaves
+     * size 0.
+     */
     @Test
     public void testRemoveAnySingle() {
         AniLibrary lib = this.build("AOT", "Action");
@@ -167,6 +213,10 @@ public abstract class AniLibraryKernelTest {
         assertEquals(0, lib.size());
     }
 
+    /**
+     * Testing: removeAny on a multi-entry library removes one arbitrary pair;
+     * remaining entries intact.
+     */
     @Test
     public void testRemoveAnyFromManyKeepsSetMinusOne() {
         AniLibrary lib = this.build("A", "X", "B", "Y", "C", "Z");
@@ -177,7 +227,9 @@ public abstract class AniLibraryKernelTest {
         this.assertEqualsMap(before, lib);
     }
 
-    // ---- Standard methods ----
+    /**
+     * Testing: clear removes all entries, leaving an empty library with size 0.
+     */
     @Test
     public void testClear() {
         AniLibrary lib = this.build("A", "X", "B", "Y");
@@ -186,15 +238,34 @@ public abstract class AniLibraryKernelTest {
         assertTrue(this.snapshot(lib).isEmpty());
     }
 
+    /**
+     * Testing: newInstance creates a fresh, empty library.
+     */
     @Test
-    public void testNewInstanceAndTransferFrom() {
-        AniLibrary lib = this.build("A", "X", "B", "Y");
-        AniLibrary fresh = lib.newInstance();
-        fresh.transferFrom(lib);
-        assertEquals(0, lib.size()); // source cleared
-        Map<String, String> exp = new HashMap<>();
+    public void testNewInstanceCreatesEmptyLibrary() {
+        AniLibrary seeded = this.build("A", "X");
+        AniLibrary fresh = seeded.newInstance();
+        assertEquals(0, fresh.size());
+        assertTrue(this.snapshot(fresh).isEmpty());
+    }
+
+    /**
+     * Testing: transferFrom moves all entries into the target and clears the
+     * source.
+     */
+    @Test
+    public void testTransferFromMovesAllAndClearsSource() {
+        AniLibrary source = this.build("A", "X", "B", "Y");
+        AniLibrary target = source.newInstance();
+
+        target.transferFrom(source);
+
+        assertEquals(0, source.size());
+        assertTrue(this.snapshot(source).isEmpty());
+
+        java.util.Map<String, String> exp = new java.util.HashMap<>();
         exp.put("A", "X");
         exp.put("B", "Y");
-        this.assertEqualsMap(exp, fresh); // target got contents
+        this.assertEqualsMap(exp, target);
     }
 }
