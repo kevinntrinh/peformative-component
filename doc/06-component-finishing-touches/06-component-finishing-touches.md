@@ -303,18 +303,18 @@ Take some time to fill them out honestly.
 > complete the portfolio project, how much better (or worse) do you think you
 > understand software development and why?
 
-<!-- TODO: discuss -->
+By completing the portfolio project I think that I understand software development a lot better. Through the project I got to experience entire process of building a component and made things feel like actual software development. The most important thing was the freedom I had in this assignment. By having complete control of what I wanted to do, I had a lot more time to myself and a lot more self reflection in understanding software development instead of just following instructions or material.
 
 > Also, did the portfolio project surface any gaps in your own knowledge of
 > software development. If so, what are those gaps and how did you address them?
 
-<!-- TODO: discuss -->
+Along with me understanding software development better, there were a lot of gaps in my own knowledge of software development that came through the process. The first gap that became very apparent was that I had no idea how to work github. Through the project, with trial and error, I had to learn how to make branches, commit changes, and keep a proper changelog so that my process could be documented. Another gap that came up was java packaging and pathing which I thought I understood but through looking up how some of the java packaging paths worked as well as the notes provided, I learned how to make a proper file directory for my project. One more thing I want to note in my gap of knowledge is testing without a reference which is all I have done in class so far. Through the notes in the assignment, I learned how to test my component with no reference available.
 
 > Finally, as a part of completing the portfolio project, to what extent has
 > your perspective of software development changed, if at all? In other words,
 > is software development something you still enjoy? If not, why not?
 
-<!-- TODO: discuss -->
+I think the portfolio project has changed my perspective of software development from one that was dim to one that has more confidence in my future in dev. Through being able to make my own choices, learn things on my own, and do actual real software development, I learned that, yes, software development is still something I enjoy and even though the industry is rough right now, I would like to stick to it to continue something that I am passionate about.
 
 > One of the challenges of completing the portfolio project is picking up a lot
 > of skills on your own. Some of these skills are, of course, software skills.
@@ -322,29 +322,29 @@ Take some time to fill them out honestly.
 > this process. Therefore, the first question is what skills did you pick up
 > through this process?
 
-<!-- TODO: discuss -->
+A couple of skills that I picked up through this process are how to write full layered components, utilizing github, creating correct java layouts, and JUnit testing from scratch.
 
 > The follow-up question is: could you rephrase these skills you picked up
 > as bullet points that you could put on a resume? Try it below.
 
-<!-- TODO: discuss -->
+- Advanced in Github management
+- Extensive JUnit Test Case without reference
+- Designed and implemented a brand new Java component
 
 > Next, how has working on this project affected your career trajectory?
 > In other words, do you now hate the topic you picked? Or, are you even more
 > interested in it? Both outcomes are valuable to your personal development.
 
-<!-- TODO: discuss -->
+I think creating components, testing, and doing library/API work is interesting and I'd like to do it. Currently though, I think everything in personal development is mostly on the same level of interest to me and I'd like to do anything. The one thing I think is still the most interesting to me web development.
 
 > Finally, consider the skills you've picked up and your current career
 > trajectory. What are some things you could do to continue on your
 > career trajectory? Also, who are some mentors you could contact to help
 > you stay on your path?
 
-<!-- TODO: discuss -->
+Some things I could do to continue on my career trajectory is to keep on applying to internships and jobs, keep creating projects in my own time, make meaningful connections and utilize them, make sure my work is out in the world, and continue to enjoy what I do. Some mentors I could contact to help me are the TAs in the class, the professors in the major, and those I meet with lots of experience.
 
 ### Changelog
-
-<!-- TODO: update CHANGELOG then delete this comment -->
 
 At the end of every assignment, you should update the
 [CHANGELOG.md](../../CHANGELOG.md) file found in the root of the project folder.
@@ -379,8 +379,6 @@ like to accomplish that, you will need to make GitHub releases after each pull
 request merge (or at least tag your commits). This is not required.
 
 ### Submission
-
-<!-- TODO: read the submission instructions then delete this comment -->
 
 Assuming that your project is in a GitHub repo somewhere and your changes are on
 a proof-of-concept branch, then what we'll want you to do is create a pull
