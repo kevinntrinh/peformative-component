@@ -1,5 +1,20 @@
 # Changelog
 
+## 2025.12.10
+
+### Added
+
+- Designed test suite for AniLibrary component
+- Designed two different use cases for AniLibrary component
+
+### Updated
+
+- Changed files to have better folder directory
+
+### Removed
+
+- TODOs in assignment 6
+
 ## 2025.11.07
 
 ### Added
